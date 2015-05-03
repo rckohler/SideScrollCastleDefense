@@ -1,17 +1,33 @@
 package com.dni.rck.sidescrollcastledefense;
 
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
 public class MainActivity extends ActionBarActivity {
-
+    float screenHeight, screenWidth;
+    GameView gameView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        screenHeight = metrics.heightPixels;
+        screenWidth = metrics.widthPixels;
+        gameView=new GameView(this);
+        gameView.setOnTouchListener(new OnSwipeTouchListener(this) {
+            @Override
+            public void onSwipeLeft() {
+                System.out.println("Swipe Left Detected  by COOOODE");
+            }
+
+        });
+        setContentView(gameView);
     }
 
 
