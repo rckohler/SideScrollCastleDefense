@@ -20,15 +20,16 @@ public class MainActivity extends ActionBarActivity {
         screenHeight = metrics.heightPixels;
         screenWidth = metrics.widthPixels;
         gameView=new GameView(this);
-        gameView.setOnTouchListener(new OnSwipeTouchListener(this) {
-            @Override
-            public void onSwipeLeft() {
-                System.out.println("Swipe Left Detected  by COOOODE");
+        setContentView(gameView);
+      //  gameView.setOnTouchListener(new OnSwipeTouchListener(this) {
+          //  @Override
+         //   public void onSwipeLeft() {
+         //       System.out.println("Swipe Left Detected  by COOOODE");
             }
 
-        });
-        setContentView(gameView);
-    }
+     //   });
+
+  //  }
 
 
     @Override
