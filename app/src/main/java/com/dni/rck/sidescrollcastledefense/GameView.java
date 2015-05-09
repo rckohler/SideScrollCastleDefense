@@ -8,6 +8,7 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.Random;
 import java.util.Vector;
 
 /**
@@ -15,11 +16,12 @@ import java.util.Vector;
  */
 public class GameView extends View {
     float initialX, initialY;
-    Bitmap bArcher, bSiege, bBall ;
+    Bitmap bArcher, bSiege, bBall, bSword, bMace, bHeavy, bSpear ;
     MainActivity main;
     DrawableObject archer;
     SiegeEngine siege;
     Projectile ball;
+    Random rand = new Random();
     Vector<DrawableObject> drawableObjects  = new Vector<>();
     public GameView(Context context) {
         super(context);
@@ -33,17 +35,34 @@ public class GameView extends View {
     }
     public boolean onTouchEvent(MotionEvent event) {
         int eventaction = event.getAction();
+        float finishX=-1, finishY=-1;
         switch (eventaction) {
-            case MotionEvent.ACTION_UP:
-                handleSiegeLaunch(event.getX(),event.getY());
-                // finger touches the screen
-                break;
+
             case MotionEvent.ACTION_DOWN:
                 initialX = event.getX();
                 initialY = event.getY();
                 break;
+            case MotionEvent.ACTION_UP:
+                finishX = event.getX();
+                finishY = event.getY();
+                handleSiegeLaunch(finishX,finishY);
+                // finger touches the screen
+                break;
+            case MotionEvent.ACTION_MOVE:
+                System.out.print(event.getX());
+
+                finishX = event.getX();
+                finishY = event.getY();
+                handleSiegeLaunch(finishX,finishY);
+                // finger touches the screen
+
+                break;
+
 
         }
+
+
+
         return true;
     }
 
