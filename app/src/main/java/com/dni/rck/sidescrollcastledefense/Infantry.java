@@ -118,7 +118,7 @@ public class Infantry extends DrawableObject {
     }
 
     public void slaughter(Archer other){
-        
+
     }
 
 }

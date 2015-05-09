@@ -16,6 +16,8 @@ import java.util.Vector;
  */
 public class GameView extends View {
     float initialX, initialY;
+    boolean drawingCrossHair = false;
+    DrawableObject crossHair;
     Bitmap bArcher, bSiege, bBall, bSword, bMace, bHeavy, bSpear ;
     MainActivity main;
     DrawableObject archer;
@@ -27,10 +29,13 @@ public class GameView extends View {
         super(context);
         main=(MainActivity)context;
         loadBitmaps();
+        crossHair = new DrawableObject(bArcher,new RectF(0,0,50,50),0,0,1,1);
         archer=new DrawableObject(bArcher,new RectF(0,0,50,50),0,0,1,1);
         ball = new Projectile(bBall,new RectF(0,0,main.screenWidth*.025f,main.screenWidth*.025f),0,0,0,0);
         siege = new SiegeEngine(bSiege,new RectF(0,0,50,50),100,300,ball);
         drawableObjects.add(archer);
+       // drawableObjects.add(crossHair);
+
         drawableObjects.add(siege);
     }
     public boolean onTouchEvent(MotionEvent event) {
@@ -39,23 +44,21 @@ public class GameView extends View {
         switch (eventaction) {
 
             case MotionEvent.ACTION_DOWN:
-                initialX = event.getX();
-                initialY = event.getY();
+
+                System.out.println("down");
+                drawingCrossHair = true;
+                crossHair.xPos = event.getX();
+                crossHair.yPos = event.getY();
                 break;
             case MotionEvent.ACTION_UP:
-                finishX = event.getX();
-                finishY = event.getY();
-                handleSiegeLaunch(finishX,finishY);
-                // finger touches the screen
+                System.out.println("up");
+                drawingCrossHair = false;
+
                 break;
             case MotionEvent.ACTION_MOVE:
-                System.out.print(event.getX());
-
-                finishX = event.getX();
-                finishY = event.getY();
-                handleSiegeLaunch(finishX,finishY);
-                // finger touches the screen
-
+                System.out.println("move");
+                crossHair.xPos = event.getX();
+                crossHair.yPos = event.getY();
                 break;
 
 
@@ -84,6 +87,7 @@ public class GameView extends View {
     }
     public void onDraw(Canvas canvas){
         drawDrawableObjects(canvas);
+        if(drawingCrossHair) crossHair.update(canvas);
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) { }
