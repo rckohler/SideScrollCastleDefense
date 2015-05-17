@@ -47,6 +47,18 @@ public class DrawableObject {
        float height=bounds.height();
        bounds.set(xPos-width*.5f, yPos-height*.5f, xPos+width*.5f,yPos+height*.5f);
     }
+    public boolean collidedWith(DrawableObject other){
+        boolean ret = false;
+            float leftWall = other.xPos-other.bounds.width()*.5f;
+            float rightWall = other.xPos+other.bounds.width()*.5f;
+            float topWall = other.yPos-other.bounds.height()*.5f;
+            float bottomWall = other.yPos+other.bounds.height()*.5f;
+            if (bounds.contains(leftWall,topWall)||bounds.contains(leftWall,bottomWall)||bounds.contains(rightWall,topWall)||bounds.contains(rightWall,bottomWall))
+                ret = true;
+
+        return ret;
+    }
+
     private void drawSelf(Canvas canvas){
         canvas.drawBitmap(bitmap,null,bounds,null);
     }

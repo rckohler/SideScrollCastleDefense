@@ -4,9 +4,9 @@ import android.graphics.Bitmap;
 import android.graphics.RectF;
 
 import java.util.Random;
-/**I made a note in order to push data, KK
-/**
- * Created by rck on 5/3/2015.
+/**/**I made a note in order to push data, KK
+
+        * Created by rck on 5/3/2015.
  */
 enum BattleState{COMBAT,UNDERORDERS,PLIABLE}
 enum InfantryType{SWORDSMAN, SPEARMAN, MACEMAN, HEAVYARMOR }

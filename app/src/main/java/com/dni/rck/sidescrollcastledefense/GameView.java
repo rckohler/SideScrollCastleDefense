@@ -34,6 +34,7 @@ public class GameView extends View {
         ball = new Projectile(bBall,new RectF(0,0,main.screenWidth*.025f,main.screenWidth*.025f),0,0,0,0);
         siege = new SiegeEngine(bSiege,new RectF(0,0,50,50),100,300,ball);
         drawableObjects.add(archer);
+
        // drawableObjects.add(crossHair);
 
         drawableObjects.add(siege);

@@ -10,6 +10,7 @@ public class SiegeEngine extends DrawableObject {
     float maxAngle, minAngle, maxPull, minPull, velocityToPull=.05f;
     float launchFromX, launchFromY;
     Projectile prototypeProjectile;
+
     public SiegeEngine(Bitmap bitmap, RectF bounds, float xPos, float yPos, Projectile projectile) {
         super(bitmap, bounds, xPos, yPos);
         prototypeProjectile = projectile;
